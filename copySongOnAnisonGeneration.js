@@ -10,10 +10,17 @@ export default () => {
     const target = document.querySelector(".searchPanelBox input").value;
     const regExp = new RegExp(`^${target}`);
     const text = item[0].innerText;
+    const lastText = item[4].innerText;
+    const splitText = lastText.split(" ");
+    const convertText = splitText[1]
+      ? /[a-zA-Z0-9]/.test(splitText[1])
+        ? `${splitText[0]}${splitText[1]}`
+        : `${splitText[0]}（${splitText[1]}）`
+      : splitText[0];
 
     if (regExp.test(text)) {
       targets.push(
-        `${item[2].innerText}「${item[3].innerText}」${item[4].innerText.replace(/ /g, "")}`,
+        `${item[2].innerText}「${item[3].innerText}」${convertText}`,
       );
     }
   });

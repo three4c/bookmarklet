@@ -8,9 +8,10 @@ export default () => {
 
   td.forEach((item) => {
     const target = document.querySelector(".searchPanelBox input").value;
+    const regExp = new RegExp(`^${target}`);
     const text = item[0].innerText;
 
-    if (target === text) {
+    if (regExp.test(text)) {
       targets.push(
         `${item[2].innerText}「${item[3].innerText}」${item[4].innerText.replace(/ /g, "")}`,
       );

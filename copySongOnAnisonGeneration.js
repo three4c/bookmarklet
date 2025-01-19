@@ -18,6 +18,7 @@ export default () => {
 
   const div = document.createElement("div");
   div.classList.add("copySongOnAnisonGeneration");
+
   const onClick = (text) => () => {
     prompt("コピーしてね👇", text);
     document.body.removeChild(div);

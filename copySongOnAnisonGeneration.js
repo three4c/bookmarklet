@@ -3,25 +3,20 @@ export default () => {
   const lastTable = table[table.length - 1];
   const row = lastTable.querySelectorAll("tr");
   const td = Array.from(row).map((item) => item.querySelectorAll("td"));
-
   const targets = [];
 
   td.forEach((item) => {
     const target = document.querySelector(".searchPanelBox input").value;
     const regExp = new RegExp(`^${target}`);
-    const firstText = item[0].innerText;
-    const lastText = item[4].innerText;
-    const [first, second] = lastText.split(" ");
-    const convertText = second
+    const [first, second] = item[4].innerText.split(" ");
+    const text = second
       ? /[a-zA-Z0-9]/.test(second)
         ? `${first}${second}`
         : `${first}（${second}）`
       : first;
 
-    if (regExp.test(firstText)) {
-      targets.push(
-        `${item[2].innerText}「${item[3].innerText}」${convertText}`,
-      );
+    if (regExp.test(item[0].innerText)) {
+      targets.push(`${item[2].innerText}「${item[3].innerText}」${text}`);
     }
   });
 
@@ -29,7 +24,7 @@ export default () => {
   div.classList.add("copySongOnAnisonGeneration");
 
   const onClick = (text) => () => {
-    prompt("コピーしてね👇", text);
+    prompt("Copy here👇", text);
     document.body.removeChild(div);
   };
 

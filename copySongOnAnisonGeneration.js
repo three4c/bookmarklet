@@ -9,16 +9,16 @@ export default () => {
   td.forEach((item) => {
     const target = document.querySelector(".searchPanelBox input").value;
     const regExp = new RegExp(`^${target}`);
-    const text = item[0].innerText;
+    const firstText = item[0].innerText;
     const lastText = item[4].innerText;
-    const splitText = lastText.split(" ");
-    const convertText = splitText[1]
-      ? /[a-zA-Z0-9]/.test(splitText[1])
-        ? `${splitText[0]}${splitText[1]}`
-        : `${splitText[0]}（${splitText[1]}）`
-      : splitText[0];
+    const [first, second] = lastText.split(" ");
+    const convertText = second
+      ? /[a-zA-Z0-9]/.test(second)
+        ? `${first}${second}`
+        : `${first}（${second}）`
+      : first;
 
-    if (regExp.test(text)) {
+    if (regExp.test(firstText)) {
       targets.push(
         `${item[2].innerText}「${item[3].innerText}」${convertText}`,
       );

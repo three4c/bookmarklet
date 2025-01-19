@@ -39,12 +39,12 @@ export default () => {
   style.innerHTML = `
     .copySongOnAnisonGeneration {
       position: fixed;
-      top: 0;
-      left: 0;
+      top: 8px;
+      left: 8px;
       z-index: 9999;
       background-color: #0d1117;
       border: 1px solid #3d444d;
-      border-radius: 0 0 8px 0; 
+      border-radius: 8px; 
       box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
       overflow: hidden;
       display: flex;

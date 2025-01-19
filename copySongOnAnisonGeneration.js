@@ -17,6 +17,7 @@ export default () => {
   });
 
   const div = document.createElement("div");
+  div.classList.add("copySongOnAnisonGeneration");
   const onClick = (text) => () => {
     prompt("コピーしてね👇", text);
     document.body.removeChild(div);
@@ -31,7 +32,7 @@ export default () => {
 
   const style = document.createElement("style");
   style.innerHTML = `
-    div {
+    .copySongOnAnisonGeneration {
       position: fixed;
       top: 0;
       left: 0;
@@ -44,7 +45,7 @@ export default () => {
       padding: 16px 16px 8px 16px;
     }
     
-    button {
+    .copySongOnAnisonGeneration button {
       background: #fff;
       border: 1px solid #ddd;
       border-radius: 4px;

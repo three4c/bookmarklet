@@ -47,7 +47,7 @@ export default () => {
       box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
       display: flex;
       flex-direction: column;
-      padding: 16px 16px 8px 16px;
+      padding: 16px;
     }
     
     .copySongOnAnisonGeneration button {
@@ -56,8 +56,11 @@ export default () => {
       border-radius: 4px;
       color: #333;
       font-size: 14px;
-      margin: 0 8px 8px 0;
       padding: 4px 8px;
+    }
+
+    .copySongOnAnisonGeneration button:not(:last-of-type) {
+      margin-bottom: 8px
     }
 
     button:hover {

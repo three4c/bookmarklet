@@ -7,11 +7,12 @@ export default () => {
   const targets = [];
 
   td.forEach((item) => {
-    const lastTd = item[item.length - 1];
-    const isMatch = /OP|ED/.test(lastTd.innerText);
-    if (isMatch) {
+    const target = document.querySelector(".searchPanelBox input").value;
+    const text = item[0].innerText;
+
+    if (target === text) {
       targets.push(
-        `${item[2].innerText}「${item[3].innerText}」${lastTd.innerText.replace(/ /g, "")}`,
+        `${item[2].innerText}「${item[3].innerText}」${item[4].innerText.replace(/ /g, "")}`,
       );
     }
   });
@@ -39,7 +40,7 @@ export default () => {
       left: 0;
       z-index: 9999;
       background: #fff;
-      border-radius: 0 0 8px 8px;
+      border-radius: 0 0 8px 0; 
       box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
       display: flex;
       flex-direction: column;

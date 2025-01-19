@@ -17,7 +17,7 @@ export default () => {
   });
 
   const div = document.createElement("div");
-  const onClick = (text) => navigator.clipboard.writeText(text).then();
+  const onClick = (text) => () => prompt("コピーしてね👇", text);
 
   targets.forEach((item) => {
     const button = document.createElement("button");

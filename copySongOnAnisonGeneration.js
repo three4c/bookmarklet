@@ -42,29 +42,29 @@ export default () => {
       top: 0;
       left: 0;
       z-index: 9999;
-      background: #fff;
+      background-color: #0d1117;
+      border: 1px solid #3d444d;
       border-radius: 0 0 8px 0; 
       box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+      overflow: hidden;
       display: flex;
       flex-direction: column;
-      padding: 16px;
     }
     
     .copySongOnAnisonGeneration button {
-      background: #fff;
-      border: 1px solid #ddd;
-      border-radius: 4px;
-      color: #333;
+      background-color: #0d1117;
+      border: none;
+      color: #f0f6fc;
       font-size: 14px;
-      padding: 4px 8px;
+      padding: 12px 16px;
     }
 
     .copySongOnAnisonGeneration button:not(:last-of-type) {
-      margin-bottom: 8px
+      border-bottom: 1px solid #3d444d;
     }
 
     button:hover {
-      background: #eee;
+      background: #151b23;
       cursor: pointer;
     }
   `;

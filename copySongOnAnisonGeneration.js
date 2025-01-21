@@ -6,7 +6,10 @@ export default () => {
   const targets = [];
 
   td.forEach((item) => {
-    const target = document.querySelector(".searchPanelBox input").value;
+    const target = document
+      .querySelector(".searchPanelBox input")
+      .value.replace(/ /g, " ")
+      .replace(/ /g, " ");
     const regExp = new RegExp(`^${target}`);
     const [first, second] = item[4].innerText.split(" ");
     const text = second

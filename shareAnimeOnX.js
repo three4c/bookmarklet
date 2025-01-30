@@ -1,4 +1,6 @@
 export default () => {
+  const addBrackets = (text) => (/「(.*?)」/.test(text) ? text : `「${text}」`);
+
   const dAnimeStore = () => {
     const headerText = document.querySelector(".headerText")?.innerText;
     const number = document.querySelector(".number")?.innerText;
@@ -9,7 +11,7 @@ export default () => {
     }
 
     const hashTag = "#dアニメストア";
-    const text = `${headerText}${number}「${title}」を視聴しました！${hashTag}`;
+    const text = `${headerText}${number}${addBrackets(title)}を視聴しました！${hashTag}`;
     const { href } = location;
     const url = `https://x.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(href)}`;
     return url;
@@ -28,7 +30,7 @@ export default () => {
     }
 
     const titleSplit = title.split(" ");
-    const convertTitle = `${titleSplit[0]}「${titleSplit[1]}」`;
+    const convertTitle = `${titleSplit[0]}${addBrackets(titleSplit[1])}`;
     const hashTag = "#ABEMA";
     const text = `${headerText}${convertTitle}を視聴しました！${hashTag}`;
     const { href } = location;

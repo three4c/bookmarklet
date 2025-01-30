@@ -2,9 +2,9 @@ export default () => {
   const addBrackets = (text) => (/「(.*?)」/.test(text) ? text : `「${text}」`);
 
   const dAnimeStore = () => {
-    const headerText = document.querySelector(".headerText")?.innerText;
-    const number = document.querySelector(".number")?.innerText;
-    const title = document.querySelector(".title")?.innerText;
+    const headerText = document.querySelector("modal .headerText")?.innerText;
+    const number = document.querySelector("modal .number")?.innerText;
+    const title = document.querySelector("modal .title")?.innerText;
 
     if (!headerText || !number || !title) {
       return;

@@ -1,27 +1,42 @@
 export default () => {
+  const target = document
+    .querySelector(".searchPanelBox input")
+    ?.value.replace(/ /g, " ")
+    .replace(/ /g, " ");
+
   const table = document.querySelectorAll("tbody");
   const lastTable = table[table.length - 1];
   const row = lastTable.querySelectorAll("tr");
   const td = Array.from(row).map((item) => item.querySelectorAll("td"));
   const targets = [];
 
-  td.forEach((item) => {
-    const target = document
-      .querySelector(".searchPanelBox input")
-      .value.replace(/ /g, " ")
-      .replace(/ /g, " ");
-    const regExp = new RegExp(`^${target}`);
-    const [first, second] = item[4].innerText.split(" ");
-    const text = second
-      ? /[a-zA-Z0-9]/.test(second)
-        ? `${first}${second}`
-        : `${first}（${second}）`
-      : first;
+  if (target) {
+    td.forEach((item) => {
+      const regExp = new RegExp(`^${target}`);
+      const [first, second] = item[4].innerText.split(" ");
+      const text = second
+        ? /[a-zA-Z0-9]/.test(second)
+          ? `${first}${second}`
+          : `${first}（${second}）`
+        : first;
 
-    if (regExp.test(item[0].innerText)) {
-      targets.push(`${item[2].innerText}「${item[3].innerText}」${text}`);
-    }
-  });
+      if (regExp.test(item[0].innerText)) {
+        targets.push(`${item[2].innerText}「${item[3].innerText}」${text}`);
+      }
+    });
+  } else {
+    td.forEach((item) => {
+      const [first, second] = item[2].innerText.split(" ");
+      const text = second
+        ? /[a-zA-Z0-9]/.test(second)
+          ? `${first}${second}`
+          : `${first}（${second}）`
+        : first;
+      targets.push(
+        `${item[0].innerText.split(" ")[0]}「${item[1].innerText}」${text}`,
+      );
+    });
+  }
 
   const div = document.createElement("div");
   div.classList.add("copySongOnAnisonGeneration");

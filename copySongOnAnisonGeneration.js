@@ -11,29 +11,25 @@ export default () => {
   const targets = [];
 
   td.forEach((item) => {
+    const [first, second] = item[target ? 4 : 2].innerText.split(" ");
+    const text = second
+      ? /[a-zA-Z0-9]/.test(second)
+        ? `${first}${second}`
+        : `${first}（${second}）`
+      : first;
+
+    let concatText = "";
+
     if (target) {
       const regExp = new RegExp(`^${target}`);
-      const [first, second] = item[4].innerText.split(" ");
-      const text = second
-        ? /[a-zA-Z0-9]/.test(second)
-          ? `${first}${second}`
-          : `${first}（${second}）`
-        : first;
-
       if (regExp.test(item[0].innerText)) {
-        targets.push(`${item[2].innerText}「${item[3].innerText}」${text}`);
+        concatText = `${item[2].innerText}「${item[3].innerText}」${text}`;
       }
     } else {
-      const [first, second] = item[2].innerText.split(" ");
-      const text = second
-        ? /[a-zA-Z0-9]/.test(second)
-          ? `${first}${second}`
-          : `${first}（${second}）`
-        : first;
-      targets.push(
-        `${item[0].innerText.split(" ")[0]}「${item[1].innerText}」${text}`,
-      );
+      concatText = `${item[0].innerText.split(" ")[0]}「${item[1].innerText}」${text}`;
     }
+
+    targets.push(concatText);
   });
 
   const div = document.createElement("div");

@@ -10,8 +10,8 @@ export default () => {
   const td = Array.from(row).map((item) => item.querySelectorAll("td"));
   const targets = [];
 
-  if (target) {
-    td.forEach((item) => {
+  td.forEach((item) => {
+    if (target) {
       const regExp = new RegExp(`^${target}`);
       const [first, second] = item[4].innerText.split(" ");
       const text = second
@@ -23,9 +23,7 @@ export default () => {
       if (regExp.test(item[0].innerText)) {
         targets.push(`${item[2].innerText}「${item[3].innerText}」${text}`);
       }
-    });
-  } else {
-    td.forEach((item) => {
+    } else {
       const [first, second] = item[2].innerText.split(" ");
       const text = second
         ? /[a-zA-Z0-9]/.test(second)
@@ -35,8 +33,8 @@ export default () => {
       targets.push(
         `${item[0].innerText.split(" ")[0]}「${item[1].innerText}」${text}`,
       );
-    });
-  }
+    }
+  });
 
   const div = document.createElement("div");
   div.classList.add("copySongOnAnisonGeneration");

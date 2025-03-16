@@ -13,9 +13,9 @@ export default () => {
   td.forEach((item) => {
     const [first, second] = item[target ? 4 : 2].innerText.split(" ");
     const text = second
-      ? /[a-zA-Z0-9]/.test(second)
+      ? /^[0-9]+$/.test(second)
         ? `${first}${second}`
-        : `${first}（${second}）`
+        : `${first}（${second.replace(/第|に放映|放映/g, "")}）`
       : first;
 
     let concatText = "";

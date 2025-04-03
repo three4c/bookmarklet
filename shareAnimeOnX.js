@@ -2,7 +2,7 @@ export default () => {
   const addBrackets = (text) => (/「(.*?)」/.test(text) ? text : `「${text}」`);
 
   const youtube = () => {
-    const regex = / - YouTube$/;
+    const regex = / - YouTube$/g;
     const isYouTubeTitle = (title) => regex.test(title);
     const title = document.title;
 
@@ -10,9 +10,9 @@ export default () => {
       return;
     }
 
-    const titleSlice = document.title.slice(0, -10);
+    const convertTitle = document.title.replace(regex, "");
     const hashTag = "@YouTube";
-    const text = `${titleSlice}を視聴しました！${hashTag}`;
+    const text = `${convertTitle}を視聴しました！${hashTag}`;
     const { href } = location;
     const url = `https://x.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(href)}`;
     return url;
@@ -46,10 +46,10 @@ export default () => {
       return;
     }
 
-    const titleSplit = title.split(" ");
-    const number = titleSplit[0];
+    const convertTitle = title.split(" ");
+    const number = convertTitle[0];
     const hashTag = "@ABEMA";
-    const text = `${headerText} ${number}${addBrackets(titleSplit[1])}を視聴しました！${hashTag}`;
+    const text = `${headerText} ${number}${addBrackets(convertTitle[1])}を視聴しました！${hashTag}`;
     const { href } = location;
     const url = `https://x.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(href)}`;
     return url;

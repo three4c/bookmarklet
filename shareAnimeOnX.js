@@ -2,9 +2,17 @@ export default () => {
   const addBrackets = (text) => (/「(.*?)」/.test(text) ? text : `「${text}」`);
 
   const youtube = () => {
-    const title = document.title.slice(0, -10);
+    const regex = / - YouTube$/;
+    const isYouTubeTitle = (title) => regex.test(title);
+    const title = document.title;
+
+    if (!isYouTubeTitle(title)) {
+      return;
+    }
+
+    const titleSlice = document.title.slice(0, -10);
     const hashTag = "@YouTube";
-    const text = `${title}を視聴しました！${hashTag}`;
+    const text = `${titleSlice}を視聴しました！${hashTag}`;
     const { href } = location;
     const url = `https://x.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(href)}`;
     return url;
@@ -47,7 +55,7 @@ export default () => {
     return url;
   };
 
-  const url = dAnimeStore() || abemaTV() || youtube();
+  const url = youtube() || dAnimeStore() || abemaTV();
   if (url) {
     window.open(url, "_blank");
   }

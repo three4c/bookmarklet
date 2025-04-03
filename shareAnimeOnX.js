@@ -47,6 +47,6 @@ export default () => {
     return url;
   };
 
-  const url = dAnimeStore() || abemaTV() || youtube;
+  const url = dAnimeStore() || abemaTV() || youtube();
   window.open(url, "_blank");
 };

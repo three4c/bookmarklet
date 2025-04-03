@@ -4,7 +4,7 @@ export default () => {
   const title = document.title;
 
   if (isYouTubeTitle(title)) {
-    const convertTitle = document.title.replace(regex, "");
+    const convertTitle = title.replace(regex, "");
     const hashTag = "@YouTube";
     const text = `${convertTitle}を視聴しました！${hashTag}`;
     const { href } = location;

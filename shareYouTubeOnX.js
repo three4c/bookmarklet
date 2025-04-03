@@ -1,7 +1,7 @@
 export default () => {
   const regex = / - YouTube$/g;
   const isYouTubeTitle = (title) => regex.test(title);
-  const title = document.title;
+  const title = String(document.title);
 
   if (isYouTubeTitle(title)) {
     const convertTitle = title.replace(regex, "");

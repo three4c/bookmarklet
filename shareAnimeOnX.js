@@ -38,6 +38,17 @@ export default () => {
     return url;
   };
 
-  const url = dAnimeStore() || abemaTV();
-  window.open(url, "_blank");
+  const youtube = () => {
+    const title = document.querySelector("title").innerText.slice(0, -10);
+    const hashTag = "@YouTube";
+    const text = `${title}を視聴しました！${hashTag}`;
+    const { href } = location;
+    const url = `https://x.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(href)}`;
+    return url;
+  };
+
+  const url = dAnimeStore() || abemaTV() || youtube();
+  if (url) {
+    window.open(url, "_blank");
+  }
 };

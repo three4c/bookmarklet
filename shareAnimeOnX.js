@@ -1,23 +1,6 @@
 export default () => {
   const addBrackets = (text) => (/「(.*?)」/.test(text) ? text : `「${text}」`);
 
-  const youtube = () => {
-    const regex = / - YouTube$/g;
-    const isYouTubeTitle = (title) => regex.test(title);
-    const title = document.title;
-
-    if (!isYouTubeTitle(title)) {
-      return;
-    }
-
-    const convertTitle = document.title.replace(regex, "");
-    const hashTag = "@YouTube";
-    const text = `${convertTitle}を視聴しました！${hashTag}`;
-    const { href } = location;
-    const url = `https://x.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(href)}`;
-    return url;
-  };
-
   const dAnimeStore = () => {
     const headerText = document.querySelector("modal .headerText")?.innerText;
     const number = document.querySelector("modal .number")?.innerText;
@@ -55,7 +38,7 @@ export default () => {
     return url;
   };
 
-  const url = youtube() || dAnimeStore() || abemaTV();
+  const url = dAnimeStore() || abemaTV();
   if (url) {
     window.open(url, "_blank");
   }

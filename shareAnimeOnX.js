@@ -39,7 +39,7 @@ export default () => {
   };
 
   const youtube = () => {
-    const title = document.querySelector("title").innerText.slice(0, -10);
+    const title = document.title.slice(0, -10);
     const hashTag = "@YouTube";
     const text = `${title}を視聴しました！${hashTag}`;
     const { href } = location;

@@ -31,13 +31,22 @@ export default () => {
 
     const titleSplit = title.split(" ");
     const number = titleSplit[0];
-    const hashTag = "#ABEMA";
+    const hashTag = "@ABEMA";
     const text = `${headerText} ${number}${addBrackets(titleSplit[1])}を視聴しました！${hashTag}`;
     const { href } = location;
     const url = `https://x.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(href)}`;
     return url;
   };
 
-  const url = dAnimeStore() || abemaTV();
+  const youtube = () => {
+    const title = document.querySelector("title").innerText.slice(0, -10);
+    const hashTag = "@YouTube";
+    const text = `${title}を視聴しました！${hashTag}`;
+    const { href } = location;
+    const url = `https://x.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(href)}`;
+    return url;
+  };
+
+  const url = dAnimeStore() || abemaTV() || youtube;
   window.open(url, "_blank");
 };
